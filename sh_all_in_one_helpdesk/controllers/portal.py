@@ -763,3 +763,5 @@ class PortalHelpdesk(CustomerPortal):
             else:
                 return {'is_other': False}
         return {'is_other': False}
+
+        
