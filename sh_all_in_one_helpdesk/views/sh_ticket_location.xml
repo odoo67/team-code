@@ -1,0 +1,35 @@
+<odoo>
+    <record id="sh_helpdesk_location_team_form_view" model="ir.ui.view">
+        <field name="name">sh.helpdesk.location.form.view</field>
+        <field name="model">sh.helpdesk.location</field>
+        <field name="arch" type="xml">
+            <form string="Helpdesk location">
+                <sheet>
+                    <group>
+                        <group>
+                            <field name="location" />
+                        </group>
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+    <record id="sh_helpdesk_team_tree_view" model="ir.ui.view">
+        <field name="name">sh.helpdesk.team.tree.view</field>
+        <field name="model">sh.helpdesk.location</field>
+        <field name="arch" type="xml">
+            <tree string="Helpdesk location">
+                <field name="location" />
+            </tree>
+        </field>
+    </record>
+    <record id="sh_helpdesk_location_action" model="ir.actions.act_window">
+        <field name="name">Helpdesk Location Type</field>
+        <field name="res_model">sh.helpdesk.location</field>
+        <field name="view_mode">tree,form</field>
+        <field name="help" type="html">
+            <p class="oe_view_nocontent_create">Create a New Location Type</p>
+        </field>
+    </record>
+    <menuitem id="sh_helpdesk_location_menu" name="Helpdesk Location" parent="sh_all_in_one_helpdesk.helpdesk_config_menu" action="sh_helpdesk_location_action" sequence="1" />
+</odoo>

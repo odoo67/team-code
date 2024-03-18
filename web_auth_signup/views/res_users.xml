@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <template id="custom_auth_signup_fields" inherit_id="auth_signup.fields">
+            <xpath expr="//div[@class='mb-3 field-login']" position="after">
+                <div class="mb-3 field-phone_number">
+                    <label for="phone_number">Phone / Mobile</label>
+                    <input type="text" name="phone_number" t-att-value="phone_number" id="phone_number" class="form-control form-control-sm"
+                        autofocus="autofocus" autocapitalize="off" required="required"/>
+                </div>
+            </xpath>
+        </template>
+
+        <record id="phone_num_id" model="ir.ui.view">
+            <field name="name">adding phone number to model res.users</field>
+            <field name="model">res.users</field>
+            <field name="inherit_id" ref="base.view_users_form"/>
+            <field name="arch" type="xml">
+                <xpath expr="//div[@class='oe_title']/h2/field[@name='login']" position="after">
+                    <label for="phone_number" string="Phone Number"/>
+                    <h2><field name="phone_number" placeholder="phone number"/></h2>
+                </xpath>
+            </field>
+        </record>
+
+
+    </data>
+</odoo>
