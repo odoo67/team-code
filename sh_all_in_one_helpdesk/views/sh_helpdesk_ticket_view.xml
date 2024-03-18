@@ -63,7 +63,6 @@
                             <field name="user_id" groups="sh_all_in_one_helpdesk.helpdesk_group_team_leader,sh_all_in_one_helpdesk.helpdesk_group_manager" />
                             <field name="sh_user_ids" widget="many2many_tags" attrs="{'invisible':[('sh_display_multi_user','=',False)]}" groups="sh_all_in_one_helpdesk.helpdesk_group_team_leader,sh_all_in_one_helpdesk.helpdesk_group_manager" />
                             <field name="subject_id" />
-                            <field name="other_description" />
                             <field name="category_id" attrs="{'invisible':[('category_bool','=',False)]}" />
                             <field name="sub_category_id" attrs="{'invisible':[('sub_category_bool','=',False)]}" />
                             <field name="tag_ids" widget="many2many_tags" options="{'color_field': 'color', 'no_create_edit': True}" />
@@ -76,7 +75,7 @@
                             <field name="partner_id" />
                             <field name="person_name" />
                             <field name="email" />
-                            <field name="mobile_no" invisible="1"/>
+                            <field name="mobile_no" />
                             <field name="mobile" />
                             <field name="replied_date" />
                             <field name="product_ids" widget="many2many_tags" attrs="{'invisible':[('sh_display_product','=',False)]}" />

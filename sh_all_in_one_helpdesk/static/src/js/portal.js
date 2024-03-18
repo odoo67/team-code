@@ -3,7 +3,6 @@ odoo.define('sh_all_in_one_helpdesk.CreateTicketPopup', function (require) {
 
 
     var publicWidget = require('web.public.widget');
-    var ajax = require('web.ajax');
 
     publicWidget.registry.CreateTicketPopup = publicWidget.Widget.extend({
         selector: '#createticketModal',
@@ -14,8 +13,6 @@ odoo.define('sh_all_in_one_helpdesk.CreateTicketPopup', function (require) {
             'click #partner': '_onClickPartner',
             'click #portal_category': '_onClickPortalCategory',
             'click #portal_team': '_onClickPortalTeam',
-            'change #portal_location': '_onChangePortalLocation',
-            'change #portal_subject': '_onChangePortalSubject', // Add event handler for subject change
         },
 
 
@@ -172,9 +169,9 @@ odoo.define('sh_all_in_one_helpdesk.CreateTicketPopup', function (require) {
                 success: function (result) {
                     var datas = JSON.parse(result);
                     $("#portal_assign_user > option").remove();
-                    $("#portal_assign_user").append('<option value="' + "user" + '">' + "Select Assign User" + "</option>");
                     $("#portal_assign_multi_user").select2('destroy');
                     $("#portal_assign_multi_user > option").remove();
+                    $("#portal_assign_user").append('<option value="' + "user" + '">' + "Select Assign User" + "</option>");
                     $("#portal_assign_multi_user").append('<option value="' + "users" + '">' + "Select Multi Users" + "</option>");
                     _.each(datas.users, function (data) {
                         $("#portal_assign_user").append('<option value="' + data.id + '">' + data.name + "</option>");
@@ -183,48 +180,7 @@ odoo.define('sh_all_in_one_helpdesk.CreateTicketPopup', function (require) {
                     $("#portal_assign_multi_user").select2();
                 },
             });
-        },
+        }
 
-        _onChangePortalLocation: function (ev) {
-            var location_id = $("#portal_location").val();
-            var self = this;
-
-            // Make an AJAX call to fetch teams based on the selected location
-            ajax.jsonRpc('/my/filter_teams', 'call', {'location_id': location_id})
-            .then(function (data) {
-                // Clear existing options
-                $("#portal_team").empty();
-
-                // Append new options based on the received data
-                _.each(data.teams, function (team) {
-                    $("#portal_team").append($('<option>', {
-                        value: team.id,
-                        text: team.name
-                    }));
-                });
-            });
-        },
-
-        _onChangePortalSubject: function (ev) {
-            var subject_name = $("#portal_subject").val();
-            var self = this;
-
-            // Make an AJAX call to fetch other information based on the selected subject
-            ajax.jsonRpc('/my/filter_other_name', 'call', {'name': subject_name})
-            .then(function (data) {
-                // Check if the selected subject matches 'Other'
-                if (data.is_other) {
-                    // Show the 'Other Description' field
-                    $('#other_description_field').show();
-                    // Add the required attribute to the textarea
-                    $('#other_description').prop('required', true);
-                } else {
-                    // Hide the 'Other Description' field
-                    $('#other_description_field').hide();
-                    // Remove the required attribute from the textarea
-                    $('#other_description').prop('required', false);
-                }
-            });
-        },
     });
 });

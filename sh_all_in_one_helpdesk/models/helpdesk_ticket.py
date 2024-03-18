@@ -267,8 +267,6 @@ class HelpdeskTicket(models.Model):
     mobile_no = fields.Char('Mobile')
     email_subject = fields.Char('Subject')
     mobile = fields.Char('Mobile Number')
-    other_description = fields.Char(string='Other Subject')
-
 
     sh_merge_ticket_ids = fields.Many2many(
         'sh.helpdesk.ticket', relation='model_merge_sh_helpdesk_ticket', column1="helpdesk", column2="ticket", string='Merge Tickets')

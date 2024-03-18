@@ -16,9 +16,7 @@ import base64
 import werkzeug
 import logging
 _logger = logging.getLogger(__name__)
-from odoo.http import route
-import json
-from werkzeug.wrappers import Response
+
 
 class PortalHelpdesk(CustomerPortal):
 
@@ -565,7 +563,7 @@ class PortalHelpdesk(CustomerPortal):
                         'person',
                         'email':
                         kw.get('portal_email'),
-                        'mobile': kw.get('portal_mobile')
+                        'mobile': kw.get('portal_mobile')  # Add field for capturing mobile number
 
                     })
                 if partner_id:
@@ -598,7 +596,6 @@ class PortalHelpdesk(CustomerPortal):
                             ticket_dic.update({
                                 'user_id': portal_user_id.id,
                             })
-
                     if not ticket_dic.get('team_id') or not ticket_dic.get(
                             'user_id'):
                         if login_user.sh_portal_user_access and request.env.user.has_group(
@@ -679,10 +676,6 @@ class PortalHelpdesk(CustomerPortal):
                     if kw.get('portal_mobile'):
                         ticket_dic.update({
                             'mobile': kw.get('portal_mobile'),
-                        })
-                    if kw.get('other_description'):
-                        ticket_dic.update({
-                            'other_description': kw.get('other_description'),
                         })
                     if kw.get('portal_category'
                               ) and kw.get('portal_category') != 'category':
