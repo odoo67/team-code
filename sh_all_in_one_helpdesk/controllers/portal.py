@@ -733,3 +733,28 @@ class PortalHelpdesk(CustomerPortal):
             return werkzeug.utils.redirect("/my/helpdesk_tickets")
         except Exception as e:
             _logger.exception('Something went wrong %s', str(e))
+
+
+
+    @http.route('/my/filter_teams', type='json', auth='public')
+    def filter_teams(self, location_id=None):
+        if location_id:
+            teams = request.env['sh.helpdesk.team'].sudo().search([('location_id', '=', int(location_id))])
+            team_data = [{'id': team.id, 'name': team.name} for team in teams]
+            return {'teams': team_data}
+        else:
+            return {'teams': []}
+
+    @http.route('/my/filter_other_name', type='json', auth='public')
+    def filter_other_name(self, name=None):
+        if name:
+            # Here, you would search for any specific criteria related to 'Other' in your model
+            # For example, assuming 'helpdesk.sub.type' is the model and 'name' is the field to match
+            others = request.env['helpdesk.sub.type'].sudo().search([('id', '=', int(name))])
+            if others.name == 'Other':
+                return {'is_other': True}
+            else:
+                return {'is_other': False}
+        return {'is_other': False}
+
+        
