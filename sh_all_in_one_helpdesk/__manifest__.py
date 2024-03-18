@@ -10,7 +10,7 @@
     "summary": "Flexible HelpDesk Customizable Help Desk Service Desk HelpDesk With Stages Help Desk Ticket Management Helpdesk Email Templates Email Alias Email Helpdesk Chatter Sale Order With Helpdesk,Purchase Order With Helpdesk Invoice With Helpdesk Apps for purchase Material Requisitions Request  purchase product Requisitions Request Material Requisition for tender Material Requisition for manufacturing order Product Request on RFQ Product Request on Tender Product Request on manufacturing order Odoo",
     "description": """Are you looking for fully flexible and customisable helpdesk in odoo? Our this apps almost contain everything you need for Service Desk, Technical Support Team, Issue Ticket System which include service request to be managed in Odoo backend. Support ticket will send by email to customer and admin. Customer can view their ticket from the website portal and easily see stage of the reported ticket. This desk is fully customizable clean and flexible. """,
     "version": "16.0.11",
-    "depends": ["mail", "portal", "product", "resource", "sale_management", "purchase", "account", "hr_timesheet", "crm", "project", ],
+    "depends": ["mail", "portal","website", "product", "resource", "sale_management", "purchase", "account", "hr_timesheet", "crm", "project", ],
     "data": [
         "security/sh_helpdesk_security.xml",
         "security/ir.model.access.csv",

@@ -441,12 +441,6 @@
                       <textarea id="description" name="portal_description" class="form-control form-field o_website_form_required_custom" placeholder="Description"/>
                     </div>
                   </div>
-                  <div class="col-6" id="other_description_field" style="display: none;">
-                      <div class="form-group">
-                          <label class="control-label" for="other_description">Other Description</label>
-                          <textarea id="other_description" name="other_description" class="form-control form-field o_website_form_required_custom" placeholder="Other Description"></textarea>
-                      </div>
-                  </div>
                 </div>
                 <div class="row">
                   <div class="col-6">

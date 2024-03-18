@@ -78,6 +78,16 @@ class DownloadReport(http.Controller):
             report_ref='sh_all_in_one_helpdesk.action_report_sh_helpdesk_ticket',
             download=download)
 
+class Employee(http.Controller):
+
+    @http.route('/employees', type="http", auth="public", website=True)
+    def employees(self, **kw):
+        return http.request.render('sh_all_in_one_helpdesk.create_employee', {})
+
+    @http.route('/create/emloyee', type="http", auth="public", website=True)
+    def create_employee(self, **kw):
+        request.env['hr.employee'].sudo().create(kw)
+        return request.render("sh_all_in_one_helpdesk.employee_thanks", {})
 
 class HelpdeskTicketFeedbackController(http.Controller):
     @http.route('/ticket/feedback/<ticket_id>',
